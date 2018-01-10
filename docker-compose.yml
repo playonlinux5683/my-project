@@ -39,6 +39,10 @@ services:
     container_name: backend
     depends_on:
       - database
+    ports:
+      - 3030:3000
+    volumes:
+      - ./back/sources:/usr/src/app
     labels:
       - "traefik.backend=backend"
       - "traefik.frontend.rule=Host:backend.local"
