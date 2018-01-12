@@ -2,12 +2,9 @@ FROM node:carbon
 
 # Create app directory
 WORKDIR /usr/src/app
-
-COPY sources/package.json .
-RUN npm install
-# If you are building your code for production
-# RUN npm install --only=production
+RUN chown 1000:1000 -R .
+USER 1000
 
 EXPOSE 3000
 
-CMD [ "npm", "start" ]
+CMD [ "./initialize.sh" ]

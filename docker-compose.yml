@@ -1,9 +1,9 @@
 version: '3'
 services:
 
-  database:
+  postgres:
     image: postgres:alpine
-    container_name: database
+    container_name: postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -19,7 +19,7 @@ services:
     image: chorss/docker-pgadmin4
     container_name: pgadmin
     depends_on:
-      - database
+      - postgres
     ports:
       - 5050:5050
     volumes:
@@ -38,9 +38,10 @@ services:
     build: ./back/
     container_name: backend
     depends_on:
-      - database
+      - postgres
     ports:
       - 3030:3000
+    working_dir: /usr/src/app
     volumes:
       - ./back/sources:/usr/src/app
     labels:
