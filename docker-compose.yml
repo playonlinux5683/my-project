@@ -12,8 +12,20 @@ services:
     volumes:
       - ./postgres/data:/var/lib/postgresql/data
     labels:
-      - "traefik.backend=database"
-      - "traefik.frontend.rule=Host:database.localhost"
+      traefik.backend: "database"
+      traefik.frontend.rule: "Host:database.localhost"
+
+  dbmanager:
+    build: ./dbmanager
+    container_name: dbmanager
+    depends_on:
+      - postgres
+    working_dir: /usr/src/app
+    volumes:
+      - ./dbmanager/sources:/usr/src/app
+    labels:
+      traefik.backend: "dbmanager"
+      traefik.frontend.rule: "Host:dbmanager.localhost"
 
   pgadmin:
     image: chorss/docker-pgadmin4
@@ -25,14 +37,14 @@ services:
     volumes:
       - ./pgadmin/data:/data
     labels:
-      - "traefik.backend=pgdamin"
-      - "traefik.frontend.rule=Host:pgdamin.localhost"
+      traefik.backend: "pgdamin"
+      traefik.frontend.rule: "Host:pgdamin.localhost"
   # front:
   #   image: ./front/
   #   container_name: frontend
   #   labels:
-  #     - "traefik.backend=frontend"
-  #     - "traefik.frontend.rule=Host:frontend.local"
+  #     traefik.backend: "frontend"
+  #     traefik.frontend.rule: "Host:frontend.local"
 
   back:
     build: ./back/
@@ -45,8 +57,8 @@ services:
     volumes:
       - ./back/sources:/usr/src/app
     labels:
-      - "traefik.backend=backend"
-      - "traefik.frontend.rule=Host:backend.local"
+      traefik.backend: "backend"
+      traefik.frontend.rule: "Host:backend.local"
 
   traefik:
     image: traefik:1.5-alpine
