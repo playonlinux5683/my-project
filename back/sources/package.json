@@ -1,16 +1,36 @@
 {
-  "name": "docker_web_app",
-  "version": "1.0.1",
-  "description": "Node.js on Docker",
-  "author": "First Last <first.last@example.com>",
+  "name": "my-back",
+  "version": "1.0.0",
+  "description": "backend",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -L index.js"
+    "start": "node node_modules/.bin/gulp watch & nodemon -L dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/playonlinux5683/my-back.git"
+  },
+  "keywords": [
+    "backend",
+    "server"
+  ],
+  "author": "PlayOnLinux",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/playonlinux5683/my-back/issues"
+  },
+  "homepage": "https://github.com/playonlinux5683/my-back#readme",
   "dependencies": {
-    "express": "^4.16.1"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^4.0.0-alpha.1",
+    "nodemon": "^1.14.11",
+    "typescript": "^2.6.2",
+    "typings": "^2.1.1"
   },
   "devDependencies": {
-    "nodemon": "^1.14.10"
+    "@types/node": "^9.3.0"
   }
 }
