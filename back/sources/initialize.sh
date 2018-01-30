@@ -2,4 +2,4 @@
 
 cd /usr/src/app
 
-npm install && npm start
+npm install && gulp watch & npm start
